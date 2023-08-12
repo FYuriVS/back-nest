@@ -8,15 +8,14 @@ import {
   Delete,
 } from '@nestjs/common';
 import { ClientsService } from './clients.service';
-import { CreateClientDto } from './dto/create-client.dto';
-import { UpdateClientDto } from './dto/update-client.dto';
+import { Prisma } from '@prisma/client';
 
 @Controller('clients')
 export class ClientsController {
   constructor(private readonly clientsService: ClientsService) {}
 
   @Post()
-  create(@Body() createClientDto: CreateClientDto) {
+  create(@Body() createClientDto: Prisma.ClientCreateInput) {
     return this.clientsService.create(createClientDto);
   }
 
@@ -31,7 +30,10 @@ export class ClientsController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateClientDto: UpdateClientDto) {
+  update(
+    @Param('id') id: string,
+    @Body() updateClientDto: Prisma.ClientUpdateInput,
+  ) {
     return this.clientsService.update(+id, updateClientDto);
   }
 

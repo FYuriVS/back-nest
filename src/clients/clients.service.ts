@@ -1,10 +1,12 @@
 import { Injectable } from '@nestjs/common';
-import { CreateClientDto } from './dto/create-client.dto';
-import { UpdateClientDto } from './dto/update-client.dto';
+import { Prisma } from '@prisma/client';
+import { PrismaService } from 'src/common/prisma/prisma.service';
 
 @Injectable()
 export class ClientsService {
-  create(createClientDto: CreateClientDto) {
+  constructor(private readonly prisma: PrismaService) {}
+
+  create(createClientDto: Prisma.ClientCreateInput) {
     return `;his action adds a new client ${createClientDto}`;
   }
 
@@ -16,7 +18,7 @@ export class ClientsService {
     return `This action returns a #${id} client`;
   }
 
-  update(id: number, updateClientDto: UpdateClientDto) {
+  update(id: number, updateClientDto: Prisma.ClientUpdateInput) {
     return `This action updates a #${id} ${updateClientDto}`;
   }
 

@@ -1,0 +1,61 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+// datasource db {
+//   provider = "mysql"
+//   url      = env("DATABASE_URL")
+// }
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.sqlite"
+}
+
+model City {
+  id              Int             @id     @default(autoincrement())
+  name            String
+  neighborhood    Neighborhood[]
+  store           Store[]
+  client          Client[]
+}
+
+model Neighborhood {
+  id              Int             @id     @default(autoincrement())
+  name            String
+  cityId          Int
+  city            City            @relation(fields: [cityId], references: [id])
+  store           Store[]
+  client          Client[]
+
+}
+
+model Store {
+  id              Int             @id     @default(autoincrement())
+  name            String
+  cityId          Int
+  city            City            @relation(fields: [cityId], references: [id])
+  neighborhoodId  Int
+  neighborhood    Neighborhood    @relation(fields: [neighborhoodId], references: [id])
+  client          Client[]
+
+}
+
+model Client {
+  id              Int             @id     @default(autoincrement())
+  name            String 
+  description     String?
+  image           String?
+  document        String
+  address         String
+  phone           String
+  cityId          Int
+  city            City            @relation(fields: [cityId], references: [id])
+  neighborhoodId  Int
+  neighborhood    Neighborhood    @relation(fields: [neighborhoodId], references: [id])
+  storeId         Int
+  store           Store           @relation(fields: [storeId], references: [id])
+}
