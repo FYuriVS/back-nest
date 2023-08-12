@@ -17,7 +17,7 @@ export class StoresService {
       if (teste?.length !== 0) {
         return {
           status: false,
-          message: 'Loja já cadastrada na base de dados!!!!!!',
+          message: 'Loja já cadastrada na base de dados!',
         };
       }
     }
