@@ -4,13 +4,12 @@ import { AppService } from './app.service';
 import { ClientsModule } from './clients/clients.module';
 import { StoresModule } from './stores/stores.module';
 import { CommonModule } from './common/common.module';
-import { FirebaseService } from './auth/firebase/firebase.service';
-import { AuthModule } from './auth/auth.module';
+import { UsersModule } from './users/users.module';
 
 @Module({
-  imports: [ClientsModule, StoresModule, CommonModule, AuthModule],
+  imports: [ClientsModule, StoresModule, CommonModule, UsersModule],
   controllers: [AppController],
-  providers: [AppService, FirebaseService],
+  providers: [AppService],
 })
 export class AppModule {
   configure(consumer: MiddlewareConsumer) {

@@ -3,9 +3,9 @@ import {
   Get,
   Post,
   Body,
-  Patch,
   Param,
   Delete,
+  Put,
 } from '@nestjs/common';
 import { ClientsService } from './clients.service';
 import { Prisma } from '@prisma/client';
@@ -29,7 +29,7 @@ export class ClientsController {
     return this.clientsService.findOne(+id);
   }
 
-  @Patch(':id')
+  @Put(':id')
   update(
     @Param('id') id: string,
     @Body() updateClientDto: Prisma.ClientUpdateInput,
