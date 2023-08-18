@@ -7,5 +7,6 @@ import { CommonModule } from 'src/common/common.module';
   imports: [CommonModule],
   controllers: [UsersController],
   providers: [UsersService],
+  exports: [UsersService],
 })
 export class UsersModule {}
