@@ -1,14 +1,8 @@
 {
   "version": 2,
-  "builds": [
-    {
-      "outdir": "public"
-    },
-    {
-      "src": "src/main.ts",
-      "use": "@vercel/node"
-    }
-  ],
+  "build": {
+    "outdir": "public"
+  },
   "routes": [
     {
       "src": "/(.*)",
